@@ -26,6 +26,6 @@ echo "\r\ncompressing git database..."
 git gc
 
 echo "\r\npushing changes to remote"
-#git push origin $BRANCH 
+git push origin $BRANCH 
 
 echo "\r\nnow you can start import_db.sh on remote server"
