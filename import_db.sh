@@ -14,5 +14,5 @@ git checkout $BRANCH
 
 
 echo "\r\n import database..."
-mysql -u $DB_USER -p$DB_PASS $DB > $DB_DUMP
+mysql -u $DB_USER -p$DB_PASS $DB < $DB_DUMP
 echo "completed"
