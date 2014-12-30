@@ -4,9 +4,10 @@ docker dev image
 Ubuntu 12.04
 php 5.3, mysql-client, xdebug etc
 
-Inner web-root is /var/www. It mapped to local host dir when image started
+Inner web-root is /var/www. It mapped to local host dir when image started.
+Network mapped to host interfaces.
 
 * to work with DB-server, just point 127.0.0.1[:DB_PORT] as database host
 * run in project dir, it will be site root
-* edit conf/apache2.conf, php.ini, etc ifyopu need custom ports, dirs settings
+* edit conf/apache2.conf, php.ini, etc if you need custom ports, dirs settings
 * run `docker-start.sh /bin/bash` to enter to the image
