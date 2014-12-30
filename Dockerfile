@@ -1,4 +1,4 @@
-FROM andboson/ubuntu:12.04.dev
+FROM ubuntu:12.04
 RUN apt-get update && apt-get install -y \
   git \
   mc \
@@ -10,6 +10,7 @@ RUN apt-get update && apt-get install -y \
   curl \
   php5-xdebug php5-gd php5-mcrypt php5-curl libapache2-mod-php5 php-pear php5-mysql php5-xcache \
   zsh \
+  phpmyadmin \
   apt-utils
 
 RUN sed -i "s/variables_order.*/variables_order = \"EGPCS\"/g" /etc/php5/apache2/php.ini
@@ -30,7 +31,12 @@ RUN ln -s /var/conf/ports.conf /etc/apache2/ports.conf
 RUN mv /etc/php5/apache2/php.ini /var/conf/conf.php.ini.back
 RUN ln -s /var/conf/php.ini /etc/php5/apache2/php.ini
 
+ADD phpmyadmin/ /etc/phpmyadmin
+RUN ln -s /etc/phpmyadmin/apache.conf /etc/apache2/conf.d/apache2.conf
+
 VOLUME ["/var/conf"]
 RUN a2enmod rewrite
+RUN echo "service apache2 start" >> /root/.bashrc
+RUN echo "tail -f /var/log/apache2/error.log" >> /root/.bashrc
 
-CMD ["/usr/sbin/apache2", "-D", "FOREGROUND"]
+CMD /bin/bash
