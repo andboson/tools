@@ -1,4 +1,4 @@
-FROM ubuntu:12.04
+FROM andboson/ubuntu:12.04.dev
 RUN apt-get update && apt-get install -y \
   git \
   mc \
@@ -31,5 +31,6 @@ RUN mv /etc/php5/apache2/php.ini /var/conf/conf.php.ini.back
 RUN ln -s /var/conf/php.ini /etc/php5/apache2/php.ini
 
 VOLUME ["/var/conf"]
+RUN a2enmod rewrite
 
 CMD ["/usr/sbin/apache2", "-D", "FOREGROUND"]
