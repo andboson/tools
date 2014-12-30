@@ -6,13 +6,16 @@ IMAGE=andboson/ubuntu:12.04.dev
 # apache configs
 CONFIG_DIR=conf
 
+# run interactive
+OPT="-t -i"
 
 ################
 CURR_DIR=`pwd`
 
-if [ -n $1 ] 
+if [ ! -z "$1" ] 
     then
-    OPT=" -t -i "
+    echo "IMAGE $1"
+    IMAGE=$1
 fi
 
 if [ -d "$CONFIG_DIR" ]
@@ -20,4 +23,8 @@ if [ -d "$CONFIG_DIR" ]
     APACHE_CONFIG="-v $CURR_DIR/$CONFIG_DIR:/var/conf"
 fi
 
-sudo docker run $OPT $APACHE_CONFIG -v $CURR_DIR/:/var/www --net=host $IMAGE $1
+echo " === print config:"
+echo "docker run $OPT $APACHE_CONFIG -v $CURR_DIR/:/var/www --net=host $IMAGE"
+
+echo " === now entereng to container"
+sudo docker run $OPT $APACHE_CONFIG -v $CURR_DIR/:/var/www --net=host $IMAGE
