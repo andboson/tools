@@ -7,6 +7,7 @@ php 5.3, mysql-client, xdebug, mc, phpmyadmin etc
 Inner web-root is /var/www. It mapped to local host dir when image started.
 Network mapped to host interfaces.
 
+* default site : localhost:8888
 * to work with DB-server, just point 127.0.0.1[:DB_PORT] as database host
 * run in project dir, it will be site root
 * edit conf/apache2.conf, php.ini, etc if you need custom ports, dirs settings
