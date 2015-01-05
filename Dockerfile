@@ -39,4 +39,6 @@ RUN a2enmod rewrite
 RUN echo "service apache2 start" >> /root/.bashrc
 RUN echo "tail -f /var/log/apache2/error.log" >> /root/.bashrc
 
+WORKDIR /var/www
+
 CMD /bin/bash
