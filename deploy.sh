@@ -10,8 +10,8 @@ git checkout $1
 exit
 fi
 
-mkdir docker-dev-run && cp -r * docker-dev-run/ && git checkout docker-dev-run
-mkdir docker-dev-build && cp -r * docker-dev-build/ && git checkout docker-dev-build
-mkdir db-ssh-sync && cp -r * db-ssh-sync/ && git checkout db-ssh-sync
-mkdir vagrant-run && cp -r * vagrant-run/ && git checkout vagrant-run 
-
+mkdir docker-dev-run && cp -r .git docker-dev-run/ && cd  docker-dev-run && git checkout docker-dev-run
+cd .. && mkdir docker-dev-build && cp -r .git docker-dev-build/ && cd  docker-dev-build && git checkout docker-dev-build
+cd .. && mkdir db-ssh-sync && cp -r .git db-ssh-sync/ && cd db-ssh-sync && git checkout db-ssh-sync
+cd .. && mkdir vagrant-run && cp -r .git vagrant-run/ && cd vagrant-run && git checkout vagrant-run
+cd ..
