@@ -11,7 +11,8 @@ RUN apt-get update && apt-get install -y \
   php5-xdebug php5-gd php5-mcrypt php5-curl libapache2-mod-php5 php-pear php5-mysql php5-xcache \
   zsh \
   phpmyadmin \
-  apt-utils
+  apt-utils \
+  libapache2-mod-proxy-html libapache2-mod-gnutls
 
 RUN sed -i "s/variables_order.*/variables_order = \"EGPCS\"/g" /etc/php5/apache2/php.ini
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
@@ -36,6 +37,9 @@ RUN ln -s /etc/phpmyadmin/apache.conf /etc/apache2/conf.d/apache2.conf
 
 VOLUME ["/var/conf"]
 RUN a2enmod rewrite
+RUN a2enmod proxy
+RUN a2enmod proxy_connect
+RUN a2enmod proxy_html
 RUN echo "service apache2 start" >> /root/.bashrc
 RUN echo "tail -f /var/log/apache2/error.log" >> /root/.bashrc
 
