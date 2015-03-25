@@ -2,7 +2,7 @@ docker dev image
 =====
 
 Ubuntu 12.04
-php 5.3, mysql-client, xdebug, mc, phpmyadmin etc
+php 5.3, mysql-client, xdebug, mc, phpmyadmin, mod-proxy etc
 
 Inner web-root is /var/www. It mapped to local host dir when image started.
 Network mapped to host interfaces.
